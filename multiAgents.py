@@ -206,14 +206,12 @@ class ExpectimaxAgent(MultiAgentSearchAgent):
         legal moves.
         """
         "*** YOUR CODE HERE ***"
-        result = max(gameState.getLegalActions(0), key = lambda x: ExpectimaxSearch(gameState.generateSuccessor(0, x), 1, 1))
-            return result
-        def expectimaxSearch(state, agentIndex, depth)
+       def expectimaxSearch(state, agentIndex, depth):
             if agentIndex == state.getNumAgents():
                 if depth == self.depth:
                     return self.evaluationFunction(state)
                 else:
-                    return expectimaxSearch(state, , depth + 1)
+                    return expectimaxSearch(state, 0 , depth + 1)
             else:
                 actions = state.getLegalActions(agentIndex)
                 if len(actions) == 0:
@@ -222,11 +220,11 @@ class ExpectimaxAgent(MultiAgentSearchAgent):
                 
                 if agentIndex == 0:
                     return max(evals)
-                    else:
-                        return sum(evals) / len(evals)
-
-            
-
+                else:
+                    return sum(evals) / len(evals)
+        result = max(gameState.getLegalActions(0), key = lambda x: expectimaxSearch(gameState.generateSuccessor(0, x), 1, 1))
+        return result
+    
 def betterEvaluationFunction(currentGameState):
     """
     Your extreme ghost-hunting, pellet-nabbing, food-gobbling, unstoppable
